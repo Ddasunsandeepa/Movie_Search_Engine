@@ -1,5 +1,6 @@
 import "./App.css";
 import MovieCard from "./components/MovieCard";
+import Home from "./pages/Home";
 
 function App() {
   // const movieNumber = 1;
@@ -30,6 +31,7 @@ function App() {
       <MovieCard
         movie={{ url: "default.jpg", title: "Unknown", releaseDate: "N/A" }}
       /> */}
+      <Home />
     </div>
   );
 }
