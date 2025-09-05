@@ -8,14 +8,11 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const handleClick = (e) => {
-    e.preventDefault();
-    alert(searchQuery);
-  };
   useEffect(() => {
     const fetchPopularMovies = async () => {
       try {
         const popularMovies = await getPopularMovies();
+        console.log(popularMovies);
         setMovies(popularMovies);
       } catch (error) {
         console.log(error);
@@ -26,9 +23,27 @@ const Home = () => {
     };
     fetchPopularMovies();
   }, []);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+    if (loading) return;
+
+    setLoading(true);
+    try {
+      const searchResults = await searchMovies(searchQuery);
+      setMovies(searchResults);
+      setError(null);
+    } catch (err) {
+      console.log(err);
+      setError("Failed to search movies...");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="home">
-      <form className="search-form" onSubmit={handleClick}>
+      <form className="search-form" onSubmit={handleSearch}>
         <input
           type="text"
           value={searchQuery}
@@ -42,11 +57,17 @@ const Home = () => {
           Search
         </button>
       </form>
-      <div className="movies-grid">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
+      {error && <div className="error-message">{error}</div>}
+
+      {loading ? (
+        <div className="loading">Loading...</div>
+      ) : (
+        <div className="movies-grid">
+          {movies.map((movie) => (
+            <MovieCard movie={movie} key={movie.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
