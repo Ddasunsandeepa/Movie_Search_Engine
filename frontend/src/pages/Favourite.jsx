@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/Favourite.css";
+import { UseMovieContext } from "../contexts/MovieContext";
 
 const Favourite = () => {
   return (
