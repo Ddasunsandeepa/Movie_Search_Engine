@@ -27,9 +27,27 @@ const Home = () => {
     };
     fetchPopularMovies();
   }, []);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+    if (loading) return;
+
+    setLoading(true);
+    try {
+      const searchResults = await searchMovies(searchQuery);
+      setMovies(searchResults);
+      setError(null);
+    } catch (err) {
+      console.log(err);
+      setError("Failed to search movies...");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="home">
-      <form className="search-form" onSubmit={handleClick}>
+      <form className="search-form" onSubmit={handleSearch}>
         <input
           type="text"
           value={searchQuery}
