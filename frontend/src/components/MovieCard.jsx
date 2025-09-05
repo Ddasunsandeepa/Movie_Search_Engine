@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/MovieCard.css";
 
 function MovieCard({ movie }) {
   if (!movie) {
@@ -12,14 +13,14 @@ function MovieCard({ movie }) {
       <div className="movie-poster">
         <img src={movie.url} alt={movie.title} />
         <div className="movie-overlay">
-          <button className="fav-btn" onClick={handleFavClick}>
+          <button className="favorite-btn" onClick={handleFavClick}>
             ❤︎
           </button>
         </div>
       </div>
       <div className="movie-info">
-        <h3 className="movie-title">{movie.title}</h3>
-        <p className="movie-releaseDate">{movie.releaseDate}</p>
+        <h3>{movie.title}</h3>
+        <p>{movie.releaseDate}</p>
       </div>
     </div>
   );
