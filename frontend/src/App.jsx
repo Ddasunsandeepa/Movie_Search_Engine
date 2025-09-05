@@ -1,4 +1,4 @@
-import "./App.css";
+import "./css/App.css";
 import MovieCard from "./components/MovieCard";
 import NavBar from "./components/NavBar";
 import Favourite from "./pages/Favourite";
@@ -8,16 +8,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   // const movieNumber = 1;
   return (
-    <div className="main-content">
+    <div className="App">
+      <NavBar />
+      <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favourite" element={<Favourite />} />
-          <Route path="/navbar" element={<NavBar />} />
         </Routes>
-      {/* <h1>Movie Application</h1>
+        {/* <h1>Movie Application</h1>
       <Test props="hello" />
       <Test props="hello world" /> */}
-      {/* {movieNumber === 1 ? (
+        {/* {movieNumber === 1 ? (
         <MovieCard
           movie={{ url: "hello", title: "hello", releaseDate: "2004" }}
         />
@@ -27,18 +28,19 @@ function App() {
         />
       )} */}
 
-      {/* {movieNumber === 1 && (
+        {/* {movieNumber === 1 && (
         <MovieCard
           movie={{ url: "hello", title: "hello", releaseDate: "2004" }}
         />
       )} */}
 
-      {/* <MovieCard
+        {/* <MovieCard
         movie={{ url: "hello", title: "hello", releaseDate: "2004" }}
       />
       <MovieCard
         movie={{ url: "default.jpg", title: "Unknown", releaseDate: "N/A" }}
       /> */}
+      </main>
     </div>
   );
 }

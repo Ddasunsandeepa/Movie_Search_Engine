@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MovieCard from "../components/MovieCard";
-import NavBar from "../components/NavBar";
+import "../css/Home.css";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,21 +15,25 @@ const Home = () => {
   ];
   return (
     <div className="home">
-      <NavBar />
       <form className="search-form" onSubmit={handleClick}>
         <input
           type="text"
           value={searchQuery}
+          className="search-input"
           onChange={(e) => {
             setSearchQuery(e.target.value);
           }}
           placeholder="Search for a movie..."
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="search-button">
+          Search
+        </button>
       </form>
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
+      <div className="movies-grid">
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </div>
     </div>
   );
 };
