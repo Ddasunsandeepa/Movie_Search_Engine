@@ -16,6 +16,7 @@ const Home = () => {
     const fetchPopularMovies = async () => {
       try {
         const popularMovies = await getPopularMovies();
+        console.log(popularMovies);
         setMovies(popularMovies);
       } catch (error) {
         console.log(error);
@@ -42,11 +43,17 @@ const Home = () => {
           Search
         </button>
       </form>
-      <div className="movies-grid">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
+      {error && <div className="error-message">{error}</div>}
+
+      {loading ? (
+        <div className="loading">Loading...</div>
+      ) : (
+        <div className="movies-grid">
+          {movies.map((movie) => (
+            <MovieCard movie={movie} key={movie.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
