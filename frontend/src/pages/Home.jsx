@@ -8,10 +8,6 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const handleClick = (e) => {
-    e.preventDefault();
-    alert(searchQuery);
-  };
   useEffect(() => {
     const fetchPopularMovies = async () => {
       try {
