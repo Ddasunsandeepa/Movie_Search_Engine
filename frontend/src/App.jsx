@@ -6,6 +6,7 @@ function App() {
   // const movieNumber = 1;
   return (
     <div>
+      <Home />
       {/* <h1>Movie Application</h1>
       <Test props="hello" />
       <Test props="hello world" /> */}
@@ -31,7 +32,6 @@ function App() {
       <MovieCard
         movie={{ url: "default.jpg", title: "Unknown", releaseDate: "N/A" }}
       /> */}
-      <Home />
     </div>
   );
 }
