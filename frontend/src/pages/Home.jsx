@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
 import "../css/Home.css";
 import { getPopularMovies, searchMovies } from "../services/api";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const handleClick = (e) => {
     e.preventDefault();
     alert(searchQuery);
   };
-  const movies = [
-    { id: 1, url: "hello", title: "hello", releaseDate: "2004" },
-    { id: 2, url: "default.jpg", title: "Unknown", releaseDate: "2010" },
-    { id: 3, url: "default.jpg", title: "hello world", releaseDate: "2002" },
-  ];
+  useEffect(() => {
+    const fetchPopularMovies = async () => {
+      try {
+        const popularMovies = await getPopularMovies();
+        setMovies(popularMovies);
+      } catch (error) {
+        console.log(error);
+        setError("Failed to fetch popular movies.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPopularMovies();
+  }, []);
   return (
     <div className="home">
       <form className="search-form" onSubmit={handleClick}>
