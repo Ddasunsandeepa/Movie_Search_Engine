@@ -4,11 +4,12 @@ import NavBar from "./components/NavBar";
 import Favourite from "./pages/Favourite";
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { MovieProvider } from "./contexts/MovieContext";
 
 function App() {
   // const movieNumber = 1;
   return (
-    <div className="App">
+    <MovieProvider>
       <NavBar />
       <main className="main-content">
         <Routes>
@@ -41,7 +42,7 @@ function App() {
         movie={{ url: "default.jpg", title: "Unknown", releaseDate: "N/A" }}
       /> */}
       </main>
-    </div>
+    </MovieProvider>
   );
 }
 
